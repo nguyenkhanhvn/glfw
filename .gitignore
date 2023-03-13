@@ -101,3 +101,8 @@ tests/triangle-vulkan
 tests/window
 tests/windows
 
+
+Binaries/
+Build/
+Intermediate/
+*.vcxproj.user
