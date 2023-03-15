@@ -105,4 +105,6 @@ tests/windows
 Binaries/
 Build/
 Intermediate/
+*.vcxproj
 *.vcxproj.user
+*.vcxproj.filters
