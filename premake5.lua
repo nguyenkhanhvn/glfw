@@ -1,7 +1,7 @@
 project "glfw"
 	kind "StaticLib"
 	language "C"
-	staticruntime "off"
+	staticruntime "on"
 
 	targetdir ("Binaries/" .. outputdir .. "/%{prj.name}")
 	objdir ("Intermediate/" .. outputdir .. "%{prj.name}")
@@ -26,6 +26,11 @@ project "glfw"
 		"src/window.c",
 	}
 
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS",
+	}
+
 	filter "system:linux"
 		pic "On"
 
@@ -42,7 +47,7 @@ project "glfw"
 			"src/glx_context.c",
 			"src/egl_context.c",
 			"src/osmesa_context.c",
-			"src/linux_joystick.c"
+			"src/linux_joystick.c",
 		}
 
 		defines
@@ -64,18 +69,12 @@ project "glfw"
 			"src/win32_window.c",
 			"src/wgl_context.c",
 			"src/egl_context.c",
-			"src/osmesa_context.c"
+			"src/osmesa_context.c",
 		}
 
 		defines 
 		{ 
 			"_GLFW_WIN32",
-			"_CRT_SECURE_NO_WARNINGS"
-		}
-
-		links
-		{
-			"Dwmapi.lib"
 		}
 
 	filter "configurations:Debug"
@@ -86,7 +85,6 @@ project "glfw"
 		runtime "Release"
 		optimize "on"
 
-	filter "configurations:Shipping"
+	filter "configurations:Dist"
 		runtime "Release"
 		optimize "on"
-        symbols "off"
